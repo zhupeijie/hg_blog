@@ -2,8 +2,6 @@
 
 @section('css')
     {!! editor_css() !!}
-
-    <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -26,13 +24,19 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                                 <select class="form-control" name="category_id" required>
                                     <option value="" hidden disabled selected>请选择分类</option>
                                     @foreach ($categories as $value)
                                         <option value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
+
+                                @if ($errors->has('category_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group{{ $errors->has('labels') ? ' has-error' : '' }}">
                                 <label for="labels" class="control-label">标签</label>
@@ -67,6 +71,7 @@
 @section('js')
     {!! editor_js() !!}
     <script>
+        var api_get_label_like = '{{ route('api.get_label_like') }}';
     </script>
-    <script type="text/javascript" src="{{ asset('js/article.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/topic.js') }}"></script>
 @endsection

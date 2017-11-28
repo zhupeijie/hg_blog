@@ -8,7 +8,7 @@ namespace App\Repositories;
 
 use App\Models\Label;
 
-class LabelRepository
+class LabelRepository extends BaseRepository
 {
     /**
      * 获得所有的标签 [根据标签名称查询]

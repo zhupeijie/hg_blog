@@ -169,6 +169,9 @@ return [
          */
         // flashy
         MercurySeries\Flashy\FlashyServiceProvider::class,
+        // laravel-editormd
+        LaravelChen\Editormd\EditorMdProvider::class,
+        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
 
         /*
          * Application Service Providers...

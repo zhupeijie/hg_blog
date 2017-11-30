@@ -1,8 +1,8 @@
 @extends('home.layouts.app')
 
-@section('css')
+@section('style')
     {!! editor_css() !!}
-@endsection
+@stop
 
 @section('content')
     <div class="container">
@@ -12,7 +12,7 @@
                         <i class="glyphicon glyphicon-edit"></i> 新建话题
                     </div>
                     <div class="panel-body">
-                        <form action="/article" method="post">
+                        <form action="/topics" method="post">
                             {{ csrf_field() }}
                              <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="control-label">标题</label>
@@ -51,7 +51,7 @@
                             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                                 <label for="body" class="control-label">内容</label>
                                 <div id="editormd_id">
-                                    <textarea name="body" style="display:none;">{{ old('body') }}</textarea>
+                                    <textarea name="body">{{ old('body') }}</textarea>
                                 </div>
 
                                 @if ($errors->has('body'))
@@ -68,10 +68,10 @@
     </div>
 @stop
 
-@section('js')
+@section('javascript')
     {!! editor_js() !!}
     <script>
         var api_get_label_like = '{{ route('api.get_label_like') }}';
     </script>
     <script type="text/javascript" src="{{ asset('js/topic.js') }}"></script>
-@endsection
+@stop

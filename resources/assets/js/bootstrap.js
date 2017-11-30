@@ -10,6 +10,8 @@ window._ = require('lodash');
 try {
     window.$ = window.jQuery = require('jquery');
 
+    window.hljs = require('./highlight/highlight.min');
+
     require('bootstrap-sass');
 
     require('./select2/select2.min');

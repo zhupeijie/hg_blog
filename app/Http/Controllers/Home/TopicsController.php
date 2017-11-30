@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Topic;
+use Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TopicRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\TopicRepository;
 use Illuminate\Http\Request;
@@ -47,29 +50,39 @@ class TopicsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  TopicRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TopicRequest $request)
     {
-        //
+        $data = [
+            'title'              => $request->get('title'),
+            'body'               => $request->get('body'),
+            'category_id'        => $request->get('category_id'),
+        ];
+
+        $topicId = $this->topic->create($data);
+
+        flashy()->success('发布成功！');
+
+        return redirect()->route('topics.show', [$topicId]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Topic $topic)
     {
-        //
+        return view('home.topics.show', compact('topic'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +93,8 @@ class TopicsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,7 +105,7 @@ class TopicsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

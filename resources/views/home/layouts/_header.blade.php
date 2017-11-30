@@ -34,7 +34,7 @@
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <li>
-                        <a href="{{ route('home.topics.create') }}">
+                        <a href="{{ route('topics.create') }}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
                     </li>

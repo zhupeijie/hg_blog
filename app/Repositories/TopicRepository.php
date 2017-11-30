@@ -6,8 +6,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Category;
 use Auth;
+use App\Models\Category;
 use App\Models\Topic;
 use App\Models\Label;
 use Illuminate\Http\Request;
@@ -45,6 +45,9 @@ class TopicRepository extends BaseRepository
 
     public function create(array $attributes)
     {
+        $attributes['user_id'] = Auth::id();
+        $attributes['last_reply_user_id'] = Auth::id();
+
         return $this->topic->create($attributes);
     }
 

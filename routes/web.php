@@ -15,14 +15,13 @@ Auth::routes();
 
 Route::group(['namespace' => 'Home'], function () {
 
-//    Route::get('/', 'PagesController@root')->name('root');
     Route::get('/', 'TopicsController@index')->name('index');
 
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
     Route::resource('topics', 'TopicsController', ['names' => [
-        'create' => 'home.topics.create',
-        'show' => 'home.topics.show',
+        'create' => 'topics.create',
+        'show' => 'topics.show',
     ]]);
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);

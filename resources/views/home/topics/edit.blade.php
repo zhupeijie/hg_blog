@@ -1,11 +1,12 @@
 @extends('home.layouts.app')
 
-@section('content')
 @section('css')
     {!! editor_css() !!}
 
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
-@endsection
+@stop
+
+@section('content')
 
 <div class="container">
     <div class="row">
@@ -59,7 +60,7 @@
         </div>
     </div>
 </div>
-
+@stop
 
 @section('js')
     {!! editor_js() !!}
@@ -67,5 +68,4 @@
         var api_get_topic_like = '{{ route('api.get_topic_like') }}';
     </script>
     <script type="text/javascript" src="{{ asset('js/article.js') }}"></script>
-@endsection
 @stop

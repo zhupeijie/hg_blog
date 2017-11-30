@@ -59,3 +59,18 @@ if (!function_exists('route_class')) {
         return str_replace('.', '-', Route::currentRouteName());
     }
 }
+
+if (!function_exists('make_excerpt')) {
+    /**
+     * 截取一段特定长度的字串
+     *
+     * @param $value
+     * @param int $length
+     * @return string
+     */
+    function make_excerpt($value, $length = 200)
+    {
+        $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
+        return str_limit($excerpt, $length);
+    }
+}

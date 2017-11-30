@@ -12,10 +12,10 @@
                 <div class="media-body">
 
                     <div class="media-heading">
-                        <a href="{{ route('home.topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
+                        <a href="{{ route('topics.show', [$topic->id]) }}" title="{{ $topic->title }}">
                             {{ $topic->title }}
                         </a>
-                        <a class="pull-right" href="{{ route('home.topics.show', [$topic->id]) }}" >
+                        <a class="pull-right" href="{{ route('topics.show', [$topic->id]) }}" >
                             <span class="badge"> {{ $topic->reply_count }} </span>
                         </a>
                     </div>

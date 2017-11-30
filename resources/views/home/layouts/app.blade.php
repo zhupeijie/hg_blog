@@ -17,7 +17,7 @@
     <script>
         window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>;
     </script>
-    @yield('css')
+    @yield('style')
 
 </head>
 
@@ -38,6 +38,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @include('flashy::message')
-    @yield('js')
+    @yield('javascript')
 </body>
 </html>

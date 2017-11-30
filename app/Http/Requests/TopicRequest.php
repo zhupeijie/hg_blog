@@ -13,7 +13,7 @@ class TopicRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,26 @@ class TopicRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title'       => 'required|min:1|max:196',
+            'category_id' => 'required',
+//            'labels' => 'required',
+            'body'        => 'required',
+        ];
+    }
+
+    /**
+     * This is the tips for article form
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required'  => '请输入标题',
+            'title.min'       => '标题不能少于1个字符',
+            'title.max'       => '标题不能多于196个字符',
+            'labels.required' => '请选择标签',
+            'body.required'   => '请输入内容',
         ];
     }
 }

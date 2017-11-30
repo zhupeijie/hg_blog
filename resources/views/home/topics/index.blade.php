@@ -2,7 +2,7 @@
 
 @section('title', isset($category) ? $category->name : '话题列表')
 
-@section('css')
+@section('style')
     <link href="{{ asset('css/article.css') }}" rel="stylesheet">
 @endsection
 

@@ -172,6 +172,8 @@ return [
         // laravel-editormd
         LaravelChen\Editormd\EditorMdProvider::class,
         zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
+        // HashIds
+        Vinkla\Hashids\HashidsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +235,8 @@ return [
 
         // flashy
         'Flashy' => MercurySeries\Flashy\Flashy::class,
+        // HashIds
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class
     ],
 
 ];

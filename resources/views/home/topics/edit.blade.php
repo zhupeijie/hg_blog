@@ -1,6 +1,6 @@
 @extends('home.layouts.app')
 
-@section('css')
+@section('style')
     {!! editor_css() !!}
 
     <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
@@ -10,16 +10,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">编辑文章</div>
                 <div class="panel-body">
-                    <form action="/article/{{ hashIdEncode($article->id) }}" method="post">
+                    <form action="/topics/{{ hashIdEncode($topic->id) }}" method="post">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="control-label">标题</label>
-                            <input id="title" name="title" type="text" class="form-control" placeholder="文章标题" value="{{ $article->title }}">
+                            <input id="title" name="title" type="text" class="form-control" placeholder="文章标题" value="{{ $topic->title }}">
 
                             @if ($errors->has('title'))
                                 <span class="help-block">
@@ -27,24 +27,38 @@
                                 </span>
                             @endif
                         </div>
+                        <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                            <select class="form-control" name="category_id" required>
+                                <option value="" hidden disabled selected>请选择分类</option>
+                                @foreach ($categories as $value)
+                                    <option value="{{ $value->id }}" {{ $topic->category_id == $value->id ? 'selected' : '' }} >{{ $value->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @if ($errors->has('category_id'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('category_id') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
                         <div class="form-group {{ $errors->has('labels') ? ' has-error' : '' }}">
                             <label for="labels" class="control-label">标签</label>
                             <select class="js-example-placeholder-multiple form-control" name="labels[]" multiple="multiple">
-                                @foreach($article->labels as $label)
-                                    <option value="{{ $label->id }}" selected>{{ $label->name }}</option>
-                                @endforeach
+                                {{--@foreach($topic->labels as $label)--}}
+                                    {{--<option value="{{ $label->id }}" selected>{{ $label->name }}</option>--}}
+                                {{--@endforeach--}}
                             </select>
 
                             @if ($errors->has('labels'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('labels') }}</strong>
-                                    </span>
+                                    <strong>{{ $errors->first('labels') }}</strong>
+                                </span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('body') ? ' has-error' : '' }}">
                             <label for="body" class="control-label">内容</label>
                             <div id="editormd_id">
-                                <textarea name="body" style="display:none;">{{ $article->body }}</textarea>
+                                <textarea name="body" style="display:none;">{{ $topic->body }}</textarea>
                             </div>
 
                             @if ($errors->has('body'))
@@ -62,10 +76,10 @@
 </div>
 @stop
 
-@section('js')
+@section('javascript')
     {!! editor_js() !!}
     <script>
-        var api_get_topic_like = '{{ route('api.get_topic_like') }}';
+{{--        var api_get_topic_like = '{{ route('api.get_topic_like') }}';--}}
     </script>
-    <script type="text/javascript" src="{{ asset('js/article.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/topic.js') }}"></script>
 @stop

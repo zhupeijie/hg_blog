@@ -39,14 +39,14 @@ class User extends Authenticatable
     }
 
     /**
-     * 是否为话题发布者
+     * 是否为发布者
      *
-     * @param $topic
+     * @param $model
      * @return bool
      */
-    public function owns($topic)
+    public function isAuthorOf($model)
     {
-        return $this->id === $topic->user_id;
+        return $this->id === $model->user_id;
     }
 
 }

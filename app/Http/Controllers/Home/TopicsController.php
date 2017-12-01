@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Topic;
 use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -56,16 +55,20 @@ class TopicsController extends Controller
     public function store(TopicRequest $request)
     {
         $data = [
-            'title'              => $request->get('title'),
-            'body'               => $request->get('body'),
-            'category_id'        => $request->get('category_id'),
+            'title'       => $request->get('title'),
+            'body'        => $request->get('body'),
+            'category_id' => $request->get('category_id'),
         ];
 
-        $topicId = $this->topic->create($data);
+        $topic = $this->topic->create($data);
+
+        $labels = $this->topic->normalizeLabelOnCreate($request->get('labels'));
+
+        $topic->labels()->attach($labels);
 
         flashy()->success('发布成功！');
 
-        return redirect()->route('topics.show', [$topicId]);
+        return redirect()->route('topics.show', [hashIdEncode($topic->id)]);
     }
 
     /**
@@ -74,8 +77,13 @@ class TopicsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show($id)
     {
+        $id = hashIdDecode($id)[0];
+        $topic = $this->topic->getTopicById($id);
+
+        $topic->increment('view_count');
+
         return view('home.topics.show', compact('topic'));
     }
 
@@ -87,19 +95,39 @@ class TopicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = hashIdDecode($id)[0];
+        $topic = $this->topic->getTopicById($id);
+
+        $this->authorize('update', $topic);
+        $categories = $this->category->getAllCategories();
+
+        return view('home.topics.edit', compact('topic', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  TopicRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TopicRequest $request, $id)
     {
-        //
+        $id = hashIdDecode($id)[0];
+        $topic = $this->topic->getTopicById($id);
+        $this->authorize('update', $topic);
+
+        $data = [
+            'title'       => $request->get('title'),
+            'body'        => $request->get('body'),
+            'category_id' => $request->get('category_id'),
+        ];
+
+        $this->topic->update($topic, $data);
+
+        flashy()->success('发布成功！');
+
+        return redirect()->route('topics.show', [hashIdEncode($topic->id)]);
     }
 
     /**
@@ -110,6 +138,16 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = hashIdDecode($id)[0];
+        $topic = $this->topic->getTopicById($id);
+        $this->authorize('destroy', $topic);
+
+        if ($this->topic->delete($topic)) {
+            flashy()->success('删除成功！');
+        } else {
+            flashy()->error('删除失败！');
+        }
+
+        return redirect()->route('topics.index')->with('success', '成功删除！');
     }
 }

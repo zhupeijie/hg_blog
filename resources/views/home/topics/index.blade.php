@@ -3,7 +3,7 @@
 @section('title', isset($category) ? $category->name : '话题列表')
 
 @section('style')
-    <link href="{{ asset('css/article.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/topic.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')

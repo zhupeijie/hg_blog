@@ -19,10 +19,7 @@ Route::group(['namespace' => 'Home'], function () {
 
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
-    Route::resource('topics', 'TopicsController', ['names' => [
-        'create' => 'topics.create',
-        'show' => 'topics.show',
-    ]]);
+    Route::resource('topics', 'TopicsController');
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 

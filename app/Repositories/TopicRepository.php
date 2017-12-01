@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 class TopicRepository extends BaseRepository
 {
+    protected $user;
     protected $topic;
 
     /**
@@ -24,12 +25,13 @@ class TopicRepository extends BaseRepository
     public function __construct(Topic $topic)
     {
         $this->topic = $topic;
+        $this->user = user();
     }
 
     public function getAllTopicsWithAuthor(Request $request)
     {
         return $this->topic->withOrder($request->order)
-//            ->undeleted()->published()
+            ->undeleted()->published()
             ->with('user', 'category')->get();
     }
 
@@ -53,6 +55,8 @@ class TopicRepository extends BaseRepository
 
     public function update($topic, array $attributes)
     {
+        $attributes['last_reply_user_id'] = user()->id;
+
         return $topic->update($attributes);
     }
 
@@ -105,16 +109,11 @@ class TopicRepository extends BaseRepository
         return $labels;
     }
 
-    /**
-     * @param $label
-     *
-     * @return mixed
-     */
     private function getLabelIdByName($label)
     {
         $oldLabel = Label::where('name', $label)->first();
         if (!$oldLabel) {
-            $newLabel = Label::create(['name' => $label, 'description' => $label, 'topics_count' => 1, 'creator' => Auth::user()->id]);
+            $newLabel = Label::create(['name' => $label, 'description' => $label, 'topics_count' => 1, 'creator' => user()->id]);
 
             return $newLabel->id;
         }

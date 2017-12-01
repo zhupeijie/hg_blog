@@ -2,6 +2,8 @@
 
 @section('style')
     {!! editor_css() !!}
+
+    <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
 @stop
 
 @section('content')

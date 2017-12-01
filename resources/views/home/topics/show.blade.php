@@ -16,7 +16,7 @@
 
                         <div class="article-meta text-center">
                             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            {{ $topic->created_at->diffForHumans() }}
+                            <abbr class="timeago popover-with-html" data-content="{{ $topic->create_at }}" data-original-title="{{ $topic->create_at }}" aria-describedby="popover870374">{{ $topic->created_at->diffForHumans() }}</abbr>
                             ⋅
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                             {{ $topic->view_count }}
@@ -38,23 +38,20 @@
                     </div>
 
                     <div class="actions operate">
-                        @if(Auth::check() && Auth::user()->owns($topic))
+                        @if(Auth::check() && Auth::user()->isAuthorOf($topic))
                             <span class="edit">
-                                <a href="/article/{{ hashIdEncode($topic->id) }}/edit">编辑文章</a>
+                                <a href="{{ route('topics.edit', [hashIdEncode($topic->id)]) }}" class="btn btn-default btn-xs" role="button">
+                                    <i class="glyphicon glyphicon-edit"></i> 编辑
+                                </a>
                             </span>
-                            <form action="/article/{{ hashIdEncode($topic->id) }}" method="post" class="delete-form">
+                            <form action="{{ route('topics.destroy', [hashIdEncode($topic->id)]) }}" method="post" class="delete-form">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button class="button is-naked delete-btn">删除</button>
+                                <button type="submit" class="btn btn-default btn-xs" style="margin-left: 6px">
+                                    <i class="glyphicon glyphicon-trash"></i> 删除
+                                </button>
                             </form>
                         @endif
-
-                            {{--<a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-default btn-xs" role="button">--}}
-                                {{--<i class="glyphicon glyphicon-edit"></i> 编辑--}}
-                            {{--</a>--}}
-                            {{--<a href="#" class="btn btn-default btn-xs" role="button">--}}
-                                {{--<i class="glyphicon glyphicon-trash"></i> 删除--}}
-                            {{--</a>--}}
                     </div>
                 </div>
             </div>

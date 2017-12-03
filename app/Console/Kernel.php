@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        // 每日零时执行以下 同步用户的最后登录时间
+        $schedule->command('blog:sync-user-actived-at')->dailyAt('00:00');
     }
 
     /**

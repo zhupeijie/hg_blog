@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::group(['namespace' => 'Home'], function () {
 
-    Route::get('/', 'TopicsController@index')->name('index');
+    Route::get('/', 'TopicsController@index')->name('root');
 
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 

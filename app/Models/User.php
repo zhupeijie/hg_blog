@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\LastActivedAtHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, LastActivedAtHelper;
 
     /**
      * 是否是已激活状态
@@ -33,6 +34,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * The Model RelationShip On Topic
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function topics()
     {
         return $this->hasMany(Topic::class);

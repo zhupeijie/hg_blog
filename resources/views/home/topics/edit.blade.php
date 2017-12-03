@@ -44,9 +44,9 @@
                         <div class="form-group {{ $errors->has('labels') ? ' has-error' : '' }}">
                             <label for="labels" class="control-label">标签</label>
                             <select class="js-example-placeholder-multiple form-control" name="labels[]" multiple="multiple">
-                                {{--@foreach($topic->labels as $label)--}}
-                                    {{--<option value="{{ $label->id }}" selected>{{ $label->name }}</option>--}}
-                                {{--@endforeach--}}
+                                @foreach($topic->labels as $label)
+                                    <option value="{{ $label->id }}" selected>{{ $label->name }}</option>
+                                @endforeach
                             </select>
 
                             @if ($errors->has('labels'))
@@ -79,7 +79,7 @@
 @section('javascript')
     {!! editor_js() !!}
     <script>
-{{--        var api_get_topic_like = '{{ route('api.get_topic_like') }}';--}}
+        var api_get_label_like = '{{ route('api.get_label_like') }}';
     </script>
     <script type="text/javascript" src="{{ asset('js/topic.js') }}"></script>
 @stop

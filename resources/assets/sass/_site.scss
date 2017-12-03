@@ -23,6 +23,32 @@ body {
             }
         }
     }
+
+    .topics-create:hover {
+        /*摇动*/
+        animation:overturn 0.3s ease-in-out 0s;
+        -webkit-animation:overturn 0.3s ease-in-out 0s;
+        -moz-animation:overturn 0.3s ease-in-out 0s;
+        transform-origin: 50% 50%;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+    }
+
+
+    @keyframes overturn {
+        0% {
+            transform: rotate(0deg);
+            -ms-transform: rotate(0deg); /* Internet Explorer */
+            -moz-transform: rotate(0deg); /* Firefox */
+            -webkit-transform: rotate(0deg); /* Safari 和 Chrome */
+        }
+        100% {
+            transform: rotate(90deg);
+            -ms-transform: rotate(90deg); /* Internet Explorer */
+            -moz-transform: rotate(90deg); /* Firefox */
+            -webkit-transform: rotate(90deg); /* Safari 和 Chrome */
+        }
+    }
 }
 
 /* Sticky footer styles */
@@ -101,7 +127,7 @@ body {
 }
 
 /* Topic Index Page */
-.topics-index-page, .categories-index-page {
+.topics-index-page, .categories-show-page, .root-page {
     .topic-list {
         .nav > li > a {
             position: relative;

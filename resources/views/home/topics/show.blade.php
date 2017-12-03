@@ -3,6 +3,7 @@
 @section('style')
     <link href="{{ asset('css/topic.css') }}" rel="stylesheet">
     <link href="{{ asset('css/highlight/styles/default.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fluidbox/fluidbox.min.css') }}" rel="stylesheet">
 @stop
 
 @section('content')
@@ -11,27 +12,33 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-9">
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title topic-title text-left">{{ $topic->title }}</h1>
+
+                        <div class="inline-block">
+                            <div class="article-meta text-left" style="float: left;">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                <abbr class="timeago popover-with-html" data-content="{{ $topic->create_at }}"
+                                      data-original-title="{{ $topic->create_at }}"
+                                      aria-describedby="popover870374">{{ $topic->created_at->diffForHumans() }}</abbr>
+                                ⋅
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                {{ $topic->view_count }}
+                                ⋅
+                                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                                {{ $topic->replies_count }}
+                            </div>
+                            {{--<article-follow-button article="{{ $topic->id }}" counts="{{ $topic->followers_count }}"></article-follow-button>--}}
+
+                            <div class="" style="display: inherit;">
+                                @foreach($topic->labels as $label)
+                                    <a class="article-label" href="/label/{{ $label->id }}"> {{ $label->name }} </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="panel-body">
-                        <h1 class="text-center">{{ $topic->title }}</h1>
-
-                        <div class="article-meta text-center">
-                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                            <abbr class="timeago popover-with-html" data-content="{{ $topic->create_at }}" data-original-title="{{ $topic->create_at }}" aria-describedby="popover870374">{{ $topic->created_at->diffForHumans() }}</abbr>
-                            ⋅
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                            {{ $topic->view_count }}
-                            ⋅
-                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                            {{ $topic->replies_count }}
-                        </div>
-                        {{--<article-follow-button article="{{ $topic->id }}" counts="{{ $topic->followers_count }}"></article-follow-button>--}}
-
-                        <div class="pull-right">
-                            {{--@foreach($topic->labels as $label)--}}
-                            {{--<a class="article-label" href="/label/{{ $label->id }}"> {{ $label->name }} </a>--}}
-                            {{--@endforeach--}}
-                        </div>
-
                         <div class="markdown-body topic-body">
                             {!! Parsedown::instance()->setMarkupEscaped(true)->text($topic->body) !!}
                         </div>
@@ -80,4 +87,12 @@
 
 @section('javascript')
     <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/fluidbox/jquery.fluidbox.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('p').fluidbox();
+        })
+    </script>
 @endsection

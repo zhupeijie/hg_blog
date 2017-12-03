@@ -17,7 +17,6 @@ class CategoriesController extends Controller
         $this->topic = $topic;
     }
 
-
     public function show(Category $category, Request $request)
     {
         $topics = $this->topic->getTopicsWithCategories($category, $request);

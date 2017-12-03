@@ -31,6 +31,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // 控制查看redis队列查看权限
+        \Horizon::auth(function ($request) {
+            return \Auth::user()->id === 1;
+        });
     }
 }

@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li class="{{ active_class(if_route('topics.index')) }}"><a href="{{ route('topics.index') }}">话题</a></li>
+                <li class="{{ active_class(if_route('p.index')) }}"><a href="{{ route('p.index') }}">话题</a></li>
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 1))) }}"><a href="{{ route('categories.show', 1) }}">分享</a></li>
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 2))) }}"><a href="{{ route('categories.show', 2) }}">教程</a></li>
                 <li class="{{ active_class((if_route('categories.show') && if_route_param('category', 3))) }}"><a href="{{ route('categories.show', 3) }}">问答</a></li>
@@ -34,7 +34,7 @@
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <li class="topics-create">
-                        <a href="{{ route('topics.create') }}">
+                        <a href="{{ route('p.create') }}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </a>
                     </li>
@@ -46,7 +46,7 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu animated flipInY" role="menu">
                             <li>
                                 <a href="{{ route('users.show', Auth::id()) }}">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

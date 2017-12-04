@@ -174,6 +174,8 @@ return [
         zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         // HashIds
         Vinkla\Hashids\HashidsServiceProvider::class,
+        // Socialite
+        Overtrue\LaravelSocialite\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,7 +238,9 @@ return [
         // flashy
         'Flashy' => MercurySeries\Flashy\Flashy::class,
         // HashIds
-        'Hashids' => Vinkla\Hashids\Facades\Hashids::class
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+        // Socialite
+        'Socialite' => Overtrue\LaravelSocialite\Socialite::class,
     ],
 
 ];

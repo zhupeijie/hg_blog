@@ -14,7 +14,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">编辑文章</div>
                 <div class="panel-body">
-                    <form action="/topics/{{ hashIdEncode($topic->id) }}" method="post">
+                    <form action="/p/{{ hashIdEncode($topic->id) }}" method="post">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">

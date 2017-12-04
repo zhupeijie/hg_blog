@@ -19,7 +19,7 @@ Route::group(['namespace' => 'Home'], function () {
 
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
-    Route::resource('topics', 'TopicsController');
+    Route::resource('p', 'TopicsController');
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
@@ -31,4 +31,10 @@ Route::group(['namespace' => 'Home'], function () {
 //    Route::group(['prefix' => 'uploads'], function () {
 //        Route::post('user-avatar', 'UploadController@userAvatar')->name('uploads.user.avatar');
 //    });
+});
+
+/** 社会化登录(Socialite) */
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/oauth/github', 'SocialiteController@gitHub')->name('oauth.github');
+    Route::get('/oauth/github/callback', 'SocialiteController@gitHubCallBack')->name('oauth.github.callback');
 });

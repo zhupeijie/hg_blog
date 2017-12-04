@@ -28,11 +28,12 @@ class TopicRepository extends BaseRepository
         $this->user = user();
     }
 
-    public function getAllTopicsWithAuthor(Request $request)
+    public function getAllTopicsWithAuthor(Request $request, $pageSize = 20)
     {
         return $this->topic->withOrder($request->order)
             ->undeleted()->published()
-            ->with('user', 'category')->get();
+            ->with('user', 'category')
+            ->paginate($pageSize);
     }
 
     public function getTopicById($id)

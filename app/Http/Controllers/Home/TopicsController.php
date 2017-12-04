@@ -68,7 +68,7 @@ class TopicsController extends Controller
 
         flashy()->success('发布成功！');
 
-        return redirect()->route('topics.show', [hashIdEncode($topic->id)]);
+        return redirect()->route('p.show', [hashIdEncode($topic->id)]);
     }
 
     /**
@@ -123,11 +123,15 @@ class TopicsController extends Controller
             'category_id' => $request->get('category_id'),
         ];
 
+        $labels = $this->topic->normalizeLabelOnUpdate($request->get('labels'), $topic);
+
         $this->topic->update($topic, $data);
+
+        $topic->labels()->sync($labels);
 
         flashy()->success('发布成功！');
 
-        return redirect()->route('topics.show', [hashIdEncode($topic->id)]);
+        return redirect()->route('p.show', [hashIdEncode($topic->id)]);
     }
 
     /**
@@ -148,6 +152,6 @@ class TopicsController extends Controller
             flashy()->error('删除失败！');
         }
 
-        return redirect()->route('topics.index')->with('success', '成功删除！');
+        return redirect()->route('p.index')->with('success', '成功删除！');
     }
 }

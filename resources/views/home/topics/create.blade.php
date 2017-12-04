@@ -14,7 +14,7 @@
                         <i class="glyphicon glyphicon-edit"></i> 新建话题
                     </div>
                     <div class="panel-body">
-                        <form action="/topics" method="post">
+                        <form action="/p" method="post">
                             {{ csrf_field() }}
                              <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="control-label">标题</label>

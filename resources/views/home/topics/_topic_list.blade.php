@@ -12,10 +12,10 @@
                 <div class="media-body">
 
                     <div class="media-heading">
-                        <a href="{{ route('topics.show', [hashIdEncode($topic->id)]) }}" title="{{ $topic->title }}">
+                        <a href="{{ route('p.show', [hashIdEncode($topic->id)]) }}" title="{{ $topic->title }}">
                             {{ $topic->title }}
                         </a>
-                        <a class="pull-right" href="{{ route('topics.show', [hashIdEncode($topic->id)]) }}" >
+                        <a class="pull-right" href="{{ route('p.show', [hashIdEncode($topic->id)]) }}" >
                             <span class="badge"> {{ $topic->reply_count }} </span>
                         </a>
                     </div>

@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
-        $this->middleware('single.user.login')->except(['edit','update']);
+        $this->middleware('single.user.login')->except(['show']);
     }
 
     public function show(User $user)

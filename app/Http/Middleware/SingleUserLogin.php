@@ -23,11 +23,11 @@ class SingleUserLogin
             return redirect('/login');
         }
 
-        $key = 'blog:single_user_login_' . auth()->id;
+        $key = 'blog:single_user_login_' . user()->id;
         if (Redis::exists($key)) {
             // 获取 Redis 中的存储的时间
             $redisTime = Redis::get($key);
-            $secret = md5(request()->getClientIp() . auth()->id . $redisTime);
+            $secret = md5(request()->getClientIp() . user()->id . $redisTime);
             // 重新加密后 判断是否和 cookie 中的值相等, 如果不等, 就退出登录, 跳转到登录页面
             if ($singleToken != $secret) {
                 auth()->logout();

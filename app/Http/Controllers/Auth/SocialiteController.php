@@ -42,10 +42,9 @@ class SocialiteController extends Controller
 
         if (!$user = $this->user->findUserBySourceWhenGithub($userInfo)) {
             $user = $this->user->create([
-                'username' => md5(str_random(5) . microtime(true)),
-                'name'     => $userInfo['name'],
+                'name'     => $userInfo['username'],
                 'email'    => $userInfo['email'],
-                'password' => $userInfo['email'],
+                'password' => bcrypt($userInfo['email']),
                 'avatar'   => $userInfo['avatar'],
                 'source'   => UserSocialite::SOURCE_GIT_HUB,
             ]);
@@ -65,6 +64,6 @@ class SocialiteController extends Controller
         // 当前 time 存入 Redis
         \Redis::set('blog:single_user_login_' . user()->id, $time);
 
-        return redirect()->route('root')->withCookie('SINGLE_USER_LOGIN_', $singleToken);
+        return redirect()->route('root')->withCookie('SINGLE_USER_LOGIN', $singleToken);
     }
 }

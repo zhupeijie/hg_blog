@@ -16,7 +16,7 @@ class CreateUserSocialitesTable extends Migration
         Schema::create('user_socialites', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('platform');
+            $table->string('source');
             $table->text('data');
             $table->timestamps();
         });

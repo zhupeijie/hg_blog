@@ -16,13 +16,16 @@ class User extends Authenticatable
     const IS_ACTIVE = 1;
     const NOT_ACTIVE = 0;
 
+    const SOURCE_GIT_HUB = 'github';
+    const SOURCE_WEB = 'web';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'verification_token', 'login_token', 'introduction'
+        'username', 'email', 'password', 'name', 'avatar', 'verification_token', 'login_token', 'introduction', 'source'
     ];
 
     /**

@@ -18,12 +18,14 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     $now = \Carbon\Carbon::now()->toDateTimeString();
 
     return [
-        'name'           => $faker->name,
+        'username'       => $faker->name,
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'name'           => $faker->name,
         'introduction'   => $faker->sentence(),
         'avatar'         => '',
+        'source'         => \App\Models\User::SOURCE_WEB,
         'is_delete'      => 0,
         'created_at'     => $now,
         'updated_at'     => $now,

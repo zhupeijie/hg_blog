@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'captcha'  => 'required|captcha',
@@ -69,12 +69,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name'               => $data['name'],
+            'username'           => $data['username'],
             'email'              => $data['email'],
             'avatar'             => '/images/avatars/default.png',
             'password'           => bcrypt($data['password']),
             'verification_token' => str_random(40),
             'login_token'        => str_random(64),
+            'source'             => str_random(64),
         ]);
 
 //        $this->sendVerifyEmailTo($user);

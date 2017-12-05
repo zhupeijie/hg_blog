@@ -6,8 +6,8 @@
 
 return [
     'github' => [
-        'client_id'     => 'your-app-id',
-        'client_secret' => 'your-app-secret',
-        'redirect'      => 'http://localhost/socialite/callback.php',
+        'client_id'     => env('OAUTH_GITHUB_CLIENT_ID', ''),
+        'client_secret' => env('OAUTH_GITHUB_CLIENT_SECRET', ''),
+        'redirect'      => env('OAUTH_GITHUB_REDIRECT_URI', 'http://blog.dev/oauth/github/callback'),
     ],
 ];

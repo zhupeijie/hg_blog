@@ -7,15 +7,26 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserSocialite;
+use App\Repositories\UserRepository;
+use Overtrue\LaravelSocialite\Socialite;
+use Auth;
 
 class SocialiteController extends Controller
 {
+    protected $user;
+
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Redirect the user to the GitHub authentication page.
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function github()
     {
         return Socialite::driver('github')->redirect();
     }
@@ -25,11 +36,35 @@ class SocialiteController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function githubCallback()
     {
-        $user = Socialite::driver('github')->user();
+        $userInfo = Socialite::driver('github')->user();
 
-        dd($user);
-        // $user->token;
+        if (!$user = $this->user->findUserBySourceWhenGithub($userInfo)) {
+            $user = $this->user->create([
+                'username' => md5(str_random(5) . microtime(true)),
+                'name'     => $userInfo['name'],
+                'email'    => $userInfo['email'],
+                'password' => $userInfo['email'],
+                'avatar'   => $userInfo['avatar'],
+                'source'   => UserSocialite::SOURCE_GIT_HUB,
+            ]);
+
+            (new UserSocialite())->create([
+                'user_id' => $user->id,
+                'source'  => UserSocialite::SOURCE_GIT_HUB,
+                'data'    => json_encode($userInfo, JSON_UNESCAPED_UNICODE),
+            ]);
+
+        }
+
+        Auth::login($user);
+        $time = time();
+
+        $singleToken = md5(request()->getClientIp() . user()->id . $time);
+        // 当前 time 存入 Redis
+        \Redis::set('blog:single_user_login_' . user()->id, $time);
+
+        return redirect()->route('root')->withCookie('SINGLE_USER_LOGIN_', $singleToken);
     }
 }

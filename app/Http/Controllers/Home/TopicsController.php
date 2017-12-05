@@ -17,6 +17,7 @@ class TopicsController extends Controller
     public function __construct(TopicRepository $topic, CategoryRepository $category)
     {
         $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('single.user.login')->only(['store','create','edit','update']);
         $this->topic = $topic;
         $this->category = $category;
     }

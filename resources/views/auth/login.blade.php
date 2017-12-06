@@ -65,7 +65,14 @@
                         <hr>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
-                                <a class="btn btn-default btn-block" href="{{ route('oauth.github') }}">
+                                <div class="ui-warning-message text-center">
+                                    <p>推荐 GitHub 用户登录！</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-2">
+                                <a class="btn btn-default btn-block btn-github" href="{{ route('oauth.github') }}">
                                     <i class="iconfont icon-github-alt"></i> Github登录</a>
                             </div>
                         </div>

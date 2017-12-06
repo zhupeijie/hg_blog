@@ -88,6 +88,28 @@ body {
     }
 }
 
+/* User login page */
+.login-page {
+    .ui-warning-message {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #C9BA9B;
+        border-radius: 4px;
+        background-color: #FFFAF3;
+        color: #573A08;
+    }
+    .ui-warning-message p {
+        line-height: 1.6;
+        padding-top: 12px;
+    }
+    .btn-github {
+        color: #00b5ad;
+        border-color: #00b5ad;
+    }
+}
+
 /* User profile page */
 .users-show-page {
     .user-info {

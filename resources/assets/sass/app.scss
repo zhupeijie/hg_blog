@@ -14,12 +14,12 @@
 // select2 css
 @import "../css/select2.min";
 
-// 引入html中markdown的样式
-@import "../css/markdown/markdown";
-
 /* universal */
 @import "site";
 
-@import "topic_body";
+//@import "topic_body";
+
+// 引入html中markdown的样式
+@import "../css/markdown/markdown";
 
 @import "../css/iconfont/iconfont.css";

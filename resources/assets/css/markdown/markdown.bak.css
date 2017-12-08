@@ -7,9 +7,9 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  color: #333333;
-  font-family: Monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 1.1em;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
 }
@@ -157,6 +157,7 @@
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre {
+  font-family: monospace, monospace;
   font-size: 1em;
 }
 
@@ -245,7 +246,7 @@
 }
 
 .markdown-body h1 {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
 }
 
@@ -307,13 +308,14 @@
 }
 
 .markdown-body code {
-  /*font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace !important;*/
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 12px;
 }
 
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 .markdown-body .octicon {
@@ -384,10 +386,8 @@
   border-left: 2px solid #009A61;
   background: #F6F6F6;
   color: #555;
-  font-size: 14px;
+  font-size: 1em;
   margin:10px 0px;
-  font-weight: bold;
-  border-radius: 2px 0px 0px 2px;
 }
 
 .markdown-body blockquote>:first-child {
@@ -430,7 +430,7 @@
 .markdown-body h4 .octicon-link,
 .markdown-body h5 .octicon-link,
 .markdown-body h6 .octicon-link {
-  color: #222;
+  color: #000;
   vertical-align: middle;
   visibility: hidden;
 }
@@ -456,7 +456,7 @@
 .markdown-body h1 {
   padding-bottom: 0.3em;
   font-size: 2em;
-  border-bottom: 1px solid #f9fafc;
+  border-bottom: 1px solid #eee;
 }
 
 .markdown-body h2 {
@@ -549,18 +549,16 @@
   max-width: 100%;
   box-sizing: content-box;
   background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 4px 30px 0 rgba(223,225,230,0.5);
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(7, 17, 27, 0.1);
   cursor: pointer;
 }
 
 .markdown-body code {
-  padding: 0.2em 0;
+  padding: 0.2em 0 0.2em 0;
+  margin: 0;
   font-size: 85%;
-  border-radius: 2px;
-  background: #EEEFE2;
-  color: #518C79;
-  margin: 0px 2px;
+  border-radius: 3px;
 }
 
 .markdown-body code::before,
@@ -581,7 +579,7 @@
   white-space: pre;
   background: transparent;
   border: 0;
-  color:#333;
+  color:orange;
 }
 
 .markdown-body .highlight {
@@ -595,75 +593,12 @@
 
 .markdown-body .highlight pre,
 .markdown-body pre {
-  overflow: hidden;
-  overflow-x: scroll;
-  font-size: 100%;
-  padding: 36px 16px 16px 16px;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
   line-height: 1.45;
   background: RGBA(43, 48, 59, 1.00);
-  border-radius: 4px;
-  position: relative;
-  margin-top: 2em;
-  animation: swing-in-top-fwd 1s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-}
-
-@keyframes swing-in-top-fwd {
-  0% {
-    -webkit-transform: rotateX(-100deg);
-    transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 1;
-  }
-}
-
-
-.markdown-body pre::after {
-  position: absolute;
-  left: 0;
-  top: 0px;
-  width: 100%;
-  height: 20px;
-  content: 'code';
-  text-align: center;
-  z-index: 100;
-  border-radius: 4px 4px 0px 0px;
-  background: #D6D6D6;
-  padding: 4px 0px;
-  line-height: 1;
-}
-.markdown-body pre::before {
-  position: absolute;
-  left: -10px;
-  top: 0px;
-  width: 100px;
-  height: 20px;
-  content: '';
-  padding: 4px 0px;
-  background: url('https://cdn.iluoy.com/5a24bc3646e84_38.png') no-repeat left center;
-  background-size: cover;
-  z-index: 101;
-  border-radius: 6px 6px 0px 0px;
-  transform: scale(0.7);
-}
-@media (max-width: 700px) {
-  .markdown-body pre::before, .markdown-body pre::after {
-    display: none;
-  }
-}
-
-.markdown-body .highlight pre::-webkit-scrollbar{
-  display: none;
-}
-.markdown-body pre::-webkit-scrollbar{
-  display: none;
+  border-radius: 3px;
 }
 
 .markdown-body pre code {
@@ -672,23 +607,15 @@
   padding: 0;
   margin: 0;
   overflow: visible;
-  line-height: 1.5em;
+  line-height: inherit;
   word-wrap: normal;
   background-color: transparent;
   border: 0;
-  color: #DEE3EC;
-  font-family: Monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 1.0em;
-  letter-spacing: 0.05em;
 }
 
 .markdown-body pre code::before,
 .markdown-body pre code::after {
   content: normal;
-}
-
-.markdown-body pre code .hljs-string {
-  color: #F7B633;
 }
 
 .markdown-body .pl-0 {
@@ -758,5 +685,5 @@
 }
 
 .markdown-body hr {
-  border-bottom-color: #f9fafc;
+  border-bottom-color: #eee;
 }

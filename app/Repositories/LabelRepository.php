@@ -21,22 +21,8 @@ class LabelRepository extends BaseRepository
      */
     public function getAllLabels($name)
     {
-        preg_match('\d+', 123);
-
         return Label::select(['id', 'name'])
             ->where('name', 'like', '%' . $name . '%')
             ->get();
-    }
-
-    public function est($userId)
-    {
-        $this->getAllLabels();
-
-        /** @var TYPE_NAME $userId */
-        $usreID = 5;
-
-
-        $uesrId= 11;
-
     }
 }

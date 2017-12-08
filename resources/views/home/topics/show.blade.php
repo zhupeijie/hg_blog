@@ -36,11 +36,9 @@
                         </div>
                     </div>
 
-                    <div class="markdown-body topic-body">
+                    <div class="markdown-body topic-body" style="min-height: 110px;">
                         {!! Parsedown::instance()->setMarkupEscaped(true)->text($topic->body) !!}
                     </div>
-
-                    <div class="social-share" data-disabled="google,twitter,facebook,diandian" data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣"></div>
 
                     <div class="actions operate">
                         @if(Auth::check() && Auth::user()->isAuthorOf($topic))
@@ -71,10 +69,22 @@
                         <div class="media">
                             <div align="center">
                                 <a href="{{ route('users.show', $topic->user->id) }}">
-                                    <img class="thumbnail img-responsive" src="{{ $topic->user->avatar }}" width="300px" height="300px">
+                                    <img class="img-thumbnail img-circle img-responsive" src="{{ $topic->user->avatar }}" width="300px" height="300px">
                                 </a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <backtop-roll></backtop-roll>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="panel panel-default" style="padding-top: 10px;padding-bottom: 10px;">
+                    <div class="panel-body" style="padding-top: 0px;padding-bottom: 0px;">
+                        <div class="social-share" data-disabled="google,twitter,facebook,diandian" data-description="Share.js - 一键分享到微博，QQ空间，腾讯微博，人人，豆瓣"></div>
                     </div>
                 </div>
             </div>

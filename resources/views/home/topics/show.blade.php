@@ -3,8 +3,176 @@
 @section('style')
     <link href="{{ asset('css/topic.css') }}" rel="stylesheet">
     <link href="{{ asset('css/highlight/styles/default.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tocify/tocify.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fluidbox/fluidbox.min.css') }}" rel="stylesheet">
     <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
+    <style>
+        .ui.card {
+            margin: 1em 0.3em;
+            max-width: 100%;
+            position: relative;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            flex-direction: column;
+            width: 290px;
+            min-height: 0px;
+            background: #FFFFFF;
+            padding: 0em;
+            border: none;
+            border-radius: 0.28571429rem;
+            box-shadow: 0px 1px 3px 0px #d3e0e9, 0px 0px 0px 1px #d3e0e9;
+            -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+            transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+            transition: box-shadow 0.1s ease, transform 0.1s ease;
+            transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease;
+        }
+        /*******************************
+            Sticky
+         *******************************/
+        .ui.sticky {
+            position: static;
+            -webkit-transition: none;
+            transition: none;
+            z-index: 800;
+            box-sizing: inherit;
+        }
+
+        /*******************************
+                    States
+        *******************************/
+        /* Bound */
+        .ui.sticky.bound {
+            position: absolute;
+            left: auto;
+            right: auto;
+        }
+
+        /* Fixed */
+        .ui.sticky.fixed {
+            position: fixed;
+            left: auto;
+            right: auto;
+        }
+
+        /* Bound/Fixed Position */
+        .ui.sticky.bound.top,
+        .ui.sticky.fixed.top {
+            top: 0px;
+            bottom: auto;
+        }
+
+        .ui.sticky.bound.bottom,
+        .ui.sticky.fixed.bottom {
+            top: auto;
+            bottom: 0px;
+        }
+
+        /******/
+        .tocify-extend-page {
+            height: 0px!important;
+        }
+
+        /*******************************
+            toc
+*******************************/
+        #toc {
+            padding: 22px 4px;
+        }
+
+        #toc ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #toc li {
+            line-height: 28px;
+        }
+
+        #toc a {
+            text-decoration: none;
+            display: block;
+        }
+
+        #toc .toc-h2 {
+            padding-left: 10px;
+        }
+
+        #toc .toc-h3 {
+            padding-left: 20px;
+        }
+
+        #toc .toc-active {
+            background: #ccc;
+        }
+
+        #toc {
+            /*
+               * jquery.tocify.css 1.9.0
+               * Author: @gregfranko
+               */
+            /* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+            /* Top level header elements */
+            /* Top level subheader elements.  These are the first nested items underneath a header element. */
+            /* Makes the font smaller for all subheader elements. */
+            /* Further indents second level subheader elements. */
+            /* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
+            /* Twitter Bootstrap Override Style */
+            /* Twitter Bootstrap Override Style */
+        }
+
+        #toc .tocify ul, #toc .tocify li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border: none;
+            line-height: 30px;
+        }
+
+        #toc .tocify-header {
+            text-indent: 0px;
+            padding: 0px 8px;
+        }
+
+        #toc .tocify-subheader {
+            text-indent: 10px;
+            display: none;
+        }
+
+        #toc .tocify-subheader li {
+            font-size: 13px;
+        }
+
+        #toc .tocify-subheader .tocify-subheader {
+            text-indent: 30px;
+        }
+
+        #toc .tocify-subheader .tocify-subheader .tocify-subheader {
+            text-indent: 40px;
+        }
+
+        #toc .nav-list > li > a, #toc .nav-list .nav-header {
+            margin: 0px;
+        }
+
+        #toc .nav-list > li > a {
+            padding: 5px;
+            color: inherit;
+        }
+
+        #toc li.tocify-item:hover {
+            background: rgba(241, 244, 247, 0.78);
+        }
+
+        #toc li.tocify-item.active {
+            border-bottom: 1px solid #00b5ad;
+            margin-bottom: -1px;
+        }
+
+    </style>
+
 @stop
 
 @section('content')
@@ -89,6 +257,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 ui sticky fixed top" style="padding-top: 20px; left: 1141.5px; width: 270px !important; height: 520px !important; margin-top: 0px; top: 0px;">
+            <div class="ui card column author-box grid tocify" id="toc"></div>
+        </div>
+
     </div>
 
 @stop
@@ -99,9 +272,20 @@
     <script type="text/javascript" src="{{ asset('js/fluidbox/jquery.fluidbox.min.js') }}"></script>
     <script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js"></script>
 
+    <script type="text/javascript" src="{{ asset('js/jqueryui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/tocify/tocify.js') }}"></script>
     <script>
         $(function () {
-            $('p').fluidbox();
+            $('.topic-body img:not(.emoji)').each(function() {
+                $(this).wrap("<a href='"+ $(this).attr('src') +"' class='fluidbox'></a>");
+            }).promise().done(function () {
+                $('a.fluidbox').fluidbox();
+            });
+
+            $("#toc").tocify({
+                context: '.topic-body',
+                selectors: "h2,h3,h4"
+            });
         })
     </script>
-@endsection
+@stop

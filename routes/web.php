@@ -23,6 +23,8 @@ Route::group(['namespace' => 'Home'], function () {
 
     Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
 
+    Route::resource('labels', 'LabelsController', ['only' => ['show']]);
+
 //    Route::get('password', 'PasswordController@password')->name('user.password');
 //    Route::post('password/update', 'PasswordController@update')->name('user.password.update');
 

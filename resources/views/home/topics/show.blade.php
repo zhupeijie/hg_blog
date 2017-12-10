@@ -47,7 +47,7 @@
                             <div class="text-right">
                                 <i class="icon iconfont icon-tag"></i>
                                 @foreach($topic->labels as $label)
-                                    <a class="topic-label" href="/label/{{ $label->id }}"> {{ $label->name }} </a>
+                                    <a class="topic-label" href="/labels/{{ $label->id }}"> {{ $label->name }} </a>
                                 @endforeach
                             </div>
                         </div>

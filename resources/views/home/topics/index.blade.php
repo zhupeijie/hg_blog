@@ -18,6 +18,23 @@
                     </div>
                 @endif
 
+                @if (isset($label))
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object img-thumbnail img-responsive" src="{{ $label->image }}"
+                                         alt="{{ $label->name }}" style="width: 100px;height: 100px;">
+                                </a>
+                            </div>
+                            <div class="media-body" style="padding-top: 5px;">
+                                <h3 class="media-heading"> {{ $label->name }} </h3>
+                                <span>{{ $label->description }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="panel panel-default">
 
                     <div class="panel-heading">

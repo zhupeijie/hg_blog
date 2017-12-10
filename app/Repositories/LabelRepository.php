@@ -7,9 +7,17 @@
 namespace App\Repositories;
 
 use App\Models\Label;
+use App\Models\Topic;
 
 class LabelRepository extends BaseRepository
 {
+    protected $topic;
+
+    public function __construct(Topic $topic)
+    {
+        $this->topic = $topic;
+    }
+
     /**
      * Get all label [Search by label name]
      *
@@ -21,5 +29,13 @@ class LabelRepository extends BaseRepository
         return Label::select(['id', 'name'])
             ->where('name', 'like', '%' . $name . '%')
             ->get();
+    }
+
+    public function getTopicsByLabel($label, $request, $pageSize = 20)
+    {
+        return $this->topic
+            ->with('user', 'labels')
+            ->where('category_id', $label->id)
+            ->paginate($pageSize);
     }
 }

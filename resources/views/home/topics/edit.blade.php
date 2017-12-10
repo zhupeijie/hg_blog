@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">编辑文章</div>
+                <div class="panel-heading"><i class="icon iconfont icon-bianji"></i> 编辑文章</div>
                 <div class="panel-body">
                     <form action="/p/{{ hashIdEncode($topic->id) }}" method="post">
                         {{ method_field('PATCH') }}
@@ -67,7 +67,7 @@
                                 </span>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-success">发布文章</button>
+                        <button type="submit" class="btn btn-success"><i class="icon iconfont icon-send"></i> 发布文章</button>
                     </form>
                 </div>
             </div>

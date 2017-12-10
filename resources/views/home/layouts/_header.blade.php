@@ -25,6 +25,15 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="topics-search">
+                    <form class="navbar-form navbar-left" action="{{ route('p.index') }}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="q" value="{{ query_param('q') }}" placeholder="Search...">
+                        </div>
+                        <button type="submit" class="btn btn-default" style="padding: 4px 10px;"><i class="icon iconfont icon-search"></i></button>
+                    </form>
+                </li>
+
                 <!-- Authentication Links -->
                 @guest
                     <li><a href="{{ route('login') }}">登录</a></li>
@@ -32,7 +41,7 @@
                 @else
                     <li class="topics-create">
                         <a href="{{ route('p.create') }}">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <i class="icon iconfont icon-xinjian" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li class="dropdown">
@@ -46,13 +55,13 @@
                         <ul class="dropdown-menu animated flipInY" role="menu">
                             <li>
                                 <a href="{{ route('users.show', Auth::id()) }}">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <i class="icon iconfont icon-user" aria-hidden="true"></i>
                                     个人中心
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('users.edit', Auth::id()) }}">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                    <i class="icon iconfont icon-bianji" aria-hidden="true"></i>
                                     编辑资料
                                 </a>
                             </li>
@@ -60,7 +69,7 @@
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                    <i class="icon iconfont icon-exit" aria-hidden="true"></i>
                                     退出登录
                                 </a>
 

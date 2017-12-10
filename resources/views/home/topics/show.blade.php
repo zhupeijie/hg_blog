@@ -29,14 +29,14 @@
                                     @if(Auth::check() && Auth::user()->isAuthorOf($topic))
                                         <span class="edit">
                                             <a href="{{ route('p.edit', [hashIdEncode($topic->id)]) }}" class="btn btn-default btn-xs" role="button">
-                                                <i class="glyphicon glyphicon-edit"></i>
+                                                <i class="icon iconfont icon-bianji"></i>
                                             </a>
                                         </span>
                                         <form action="{{ route('p.destroy', [hashIdEncode($topic->id)]) }}" method="post" class="delete-form">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-default btn-xs" style="margin-left: 6px">
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                                <i class="icon iconfont icon-shanchu"></i>
                                             </button>
                                         </form>
                                     @endif
@@ -45,6 +45,7 @@
                             {{--<article-follow-button article="{{ $topic->id }}" counts="{{ $topic->followers_count }}"></article-follow-button>--}}
 
                             <div class="text-right">
+                                <i class="icon iconfont icon-tag"></i>
                                 @foreach($topic->labels as $label)
                                     <a class="topic-label" href="/label/{{ $label->id }}"> {{ $label->name }} </a>
                                 @endforeach

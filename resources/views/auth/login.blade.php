@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
                                 <a class="btn btn-default btn-block btn-github" href="{{ route('oauth.github') }}">
-                                    <i class="iconfont icon-github-alt"></i> Github登录</a>
+                                    <i class="icon iconfont icon-github"></i> Github登录</a>
                             </div>
                         </div>
                     </form>

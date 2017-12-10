@@ -6,7 +6,7 @@
         <div class="panel panel-default col-md-10 col-md-offset-1">
             <div class="panel-heading">
                 <h4>
-                    <i class="glyphicon glyphicon-edit"></i> 编辑个人资料
+                    <i class="icon iconfont icon-bianji"></i> 编辑个人资料
                 </h4>
             </div>
 

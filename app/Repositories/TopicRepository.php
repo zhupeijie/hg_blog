@@ -46,7 +46,10 @@ class TopicRepository extends BaseRepository
      */
     public function getAllTopicsWithAuthor(Request $request, $pageSize = 20)
     {
+        $title = ($request->has('q') && $request->get('q')) ? $request->get('q') : '';
+
         return $this->topic->withOrder($request->order)
+            ->byTitle($title)
             ->undeleted()->published()
             ->with('user', 'category')
             ->paginate($pageSize);

@@ -10,9 +10,7 @@
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="glyphicon glyphicon-edit"></i> 新建话题
-                    </div>
+                    <div class="panel-heading"><i class="icon iconfont icon-bianji"></i> 新建话题</div>
                     <div class="panel-body">
                         <form action="/p" method="post">
                             {{ csrf_field() }}
@@ -62,7 +60,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-success">发布文章</button>
+                            <button type="submit" class="btn btn-success"><i class="icon iconfont icon-send"></i> 发布文章</button>
                         </form>
                     </div>
                 </div>

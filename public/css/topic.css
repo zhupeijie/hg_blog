@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-a.article-label {
+a.topic-label {
     margin: 0 5px 5px 0;
     padding: 1px 10px 0;
     background: #eff6fa;
@@ -13,32 +13,15 @@ a.article-label {
     cursor: pointer;
 }
 
-a.article-label:hover {
+a.topic-label:hover {
     background: #259;
     color: #fff;
     text-decoration: none;
 }
 
-.button.is-naked {
-    padding: 0;
-    background: 0 0;
-    border: none;
-    border-radius: 0;
-    height: 0;
-}
-
 .actions {
-    padding: 10px 15px;
+    padding: 10px 0px;
     display: flex;
-}
-
-.delete-form {
-    margin-left: 20px;
-}
-
-.delete-btn {
-    color: #3097D1;
-    text-decoration: none;
 }
 
 .user-statics, .user-actions {

@@ -10,13 +10,10 @@ use App\Models\Label;
 
 class LabelRepository extends BaseRepository
 {
-
-    protected $aa;
     /**
-     * 获得所有的标签 [根据标签名称查询]
+     * Get all label [Search by label name]
      *
      * @param $name
-     *
      * @return mixed
      */
     public function getAllLabels($name)

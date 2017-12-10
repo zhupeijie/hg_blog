@@ -75,5 +75,5 @@
     <script>
         var api_get_label_like = '{{ route('api.get_label_like') }}';
     </script>
-    <script type="text/javascript" src="{{ asset('js/topic.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/label.js') }}"></script>
 @stop

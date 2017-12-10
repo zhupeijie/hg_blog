@@ -14,8 +14,18 @@ use Auth;
 
 class SocialiteController extends Controller
 {
+    /**
+     * The user repository instance.
+     *
+     * @var UserRepository
+     */
     protected $user;
 
+    /**
+     * SocialiteController constructor.
+     *
+     * @param UserRepository $user
+     */
     public function __construct(UserRepository $user)
     {
         $this->user = $user;
@@ -40,21 +50,8 @@ class SocialiteController extends Controller
     {
         $userInfo = Socialite::driver('github')->user();
 
-        if (!$user = $this->user->findUserBySourceWhenGithub($userInfo)) {
-            $user = $this->user->create([
-                'name'     => $userInfo['username'],
-                'email'    => $userInfo['email'],
-                'password' => bcrypt($userInfo['email']),
-                'avatar'   => $userInfo['avatar'],
-                'source'   => UserSocialite::SOURCE_GIT_HUB,
-            ]);
-
-            (new UserSocialite())->create([
-                'user_id' => $user->id,
-                'source'  => UserSocialite::SOURCE_GIT_HUB,
-                'data'    => json_encode($userInfo, JSON_UNESCAPED_UNICODE),
-            ]);
-
+        if (!$user = $this->user->findUserBySource($userInfo)) {
+            $user = $this->store($userInfo);
         }
 
         Auth::login($user);
@@ -65,5 +62,30 @@ class SocialiteController extends Controller
         \Redis::set('blog:single_user_login_' . user()->id, $time);
 
         return redirect()->route('root')->withCookie('SINGLE_USER_LOGIN', $singleToken);
+    }
+
+    /**
+     * Create an user and save socialite data.
+     *
+     * @param $userInfo
+     * @return mixed
+     */
+    private function store($userInfo)
+    {
+        $user = $this->user->create([
+            'name'     => $userInfo['username'],
+            'email'    => $userInfo['email'],
+            'password' => bcrypt($userInfo['email']),
+            'avatar'   => $userInfo['avatar'],
+            'source'   => UserSocialite::SOURCE_GIT_HUB,
+        ]);
+
+        (new UserSocialite())->create([
+            'user_id' => $user->id,
+            'source'  => UserSocialite::SOURCE_GIT_HUB,
+            'data'    => json_encode($userInfo, JSON_UNESCAPED_UNICODE),
+        ]);
+
+        return $user;
     }
 }

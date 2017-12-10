@@ -19,7 +19,7 @@ class CategoriesController extends Controller
 
     public function show(Category $category, Request $request)
     {
-        $topics = $this->topic->getTopicsWithCategories($category, $request);
+        $topics = $this->topic->getTopicsByCategory($category, $request);
 
         return view('home.topics.index', compact('topics', 'category'));
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Category;
+use App\Models\Topic;
 use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -55,17 +57,14 @@ class TopicsController extends Controller
      */
     public function store(TopicRequest $request)
     {
-        $data = [
-            'title'       => $request->get('title'),
-            'body'        => $request->get('body'),
-            'category_id' => $request->get('category_id'),
-        ];
-
-        $topic = $this->topic->create($data);
+        $topic = $this->topic->create($request->all());
 
         $labels = $this->topic->normalizeLabelOnCreate($request->get('labels'));
-
         $topic->labels()->attach($labels);
+
+        $topic->user()->increment('topics_count');
+
+        $topic->category()->increment('topics_count');
 
         flashy()->success('发布成功！');
 
@@ -115,18 +114,15 @@ class TopicsController extends Controller
     public function update(TopicRequest $request, $id)
     {
         $id = hashIdDecode($id)[0];
+        /* @var $topic Topic */
         $topic = $this->topic->getTopicById($id);
         $this->authorize('update', $topic);
 
-        $data = [
-            'title'       => $request->get('title'),
-            'body'        => $request->get('body'),
-            'category_id' => $request->get('category_id'),
-        ];
-
         $labels = $this->topic->normalizeLabelOnUpdate($request->get('labels'), $topic);
 
-        $this->topic->update($topic, $data);
+        $this->category->syncTopicsCount($topic, $request->get('category_id'));
+
+        $this->topic->update($topic, $request->all());
 
         $topic->labels()->sync($labels);
 
@@ -148,6 +144,8 @@ class TopicsController extends Controller
         $this->authorize('destroy', $topic);
 
         if ($this->topic->delete($topic)) {
+            $this->topic->decTopicRelations($topic);
+
             flashy()->success('删除成功！');
         } else {
             flashy()->error('删除失败！');

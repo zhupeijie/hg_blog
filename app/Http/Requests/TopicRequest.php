@@ -26,7 +26,7 @@ class TopicRequest extends FormRequest
         return [
             'title'       => 'required|min:1|max:196',
             'category_id' => 'required',
-//            'labels' => 'required',
+            'labels'      => 'required',
             'body'        => 'required',
         ];
     }

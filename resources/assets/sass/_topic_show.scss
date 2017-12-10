@@ -1,0 +1,150 @@
+.p-show-page {
+  .ui.card {
+    margin: 1em 0.3em;
+    max-width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    width: 290px;
+    min-height: 0px;
+    background: #FFFFFF;
+    padding: 0em;
+    border: none;
+    border-radius: 0.28571429rem;
+    box-shadow: 0px 1px 3px 0px #d3e0e9, 0px 0px 0px 1px #d3e0e9;
+    -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+    transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+    transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease;
+  }
+
+  /******/
+  .tocify-extend-page {
+    display: none;
+  }
+
+  /*******************************
+      Sticky
+   *******************************/
+  .ui.sticky {
+    position: static;
+    -webkit-transition: none;
+    transition: none;
+    z-index: 800;
+    box-sizing: inherit;
+  }
+
+  /*******************************
+              States
+  *******************************/
+  /* Bound */
+  .ui.sticky.bound {
+    position: absolute;
+    left: auto;
+    right: auto;
+  }
+
+  /* Fixed */
+  .ui.sticky.fixed {
+    position: fixed;
+    left: auto;
+    right: auto;
+  }
+
+  /* Bound/Fixed Position */
+  .ui.sticky.bound.top,
+  .ui.sticky.fixed.top {
+    top: 0px;
+    bottom: auto;
+  }
+
+  .ui.sticky.bound.bottom,
+  .ui.sticky.fixed.bottom {
+    top: auto;
+    bottom: 0px;
+  }
+
+  /*******************************
+      toc
+  *******************************/
+  #toc {
+    padding: 22px 4px;
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    li {
+      line-height: 28px;
+    }
+    a {
+      text-decoration: none;
+      display: block;
+    }
+    .toc-h2 {
+      padding-left: 10px;
+    }
+    .toc-h3 {
+      padding-left: 20px;
+    }
+    .toc-active {
+      background: #ccc;
+    }
+    .tocify ul, .tocify li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      line-height: 30px;
+    }
+    .tocify-header {
+      text-indent: 0px;
+      padding: 0px 8px;
+    }
+    .tocify-subheader {
+      text-indent: 10px;
+      display: none;
+    }
+    .tocify-subheader li {
+      font-size: 13px;
+    }
+    .tocify-subheader .tocify-subheader {
+      text-indent: 30px;
+    }
+    .tocify-subheader .tocify-subheader .tocify-subheader {
+      text-indent: 40px;
+    }
+    .nav-list > li > a, .nav-list .nav-header {
+      margin: 0px;
+    }
+    .nav-list > li > a {
+      padding: 5px;
+      color: inherit;
+    }
+    li.tocify-item:hover {
+      background: rgba(241, 244, 247, 0.78);
+    }
+    li.tocify-item.active {
+      border-bottom: 1px solid #00b5ad;
+      margin-bottom: -1px;
+    }
+  }
+
+  #toc {
+    /*
+     * jquery.tocify.css 1.9.0
+     * Author: @gregfranko
+     */
+    /* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+    /* Top level header elements */
+    /* Top level subheader elements.  These are the first nested items underneath a header element. */
+    /* Makes the font smaller for all subheader elements. */
+    /* Further indents second level subheader elements. */
+    /* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
+    /* Twitter Bootstrap Override Style */
+    /* Twitter Bootstrap Override Style */
+  }
+}

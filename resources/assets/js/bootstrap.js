@@ -15,6 +15,14 @@ try {
     require('bootstrap-sass');
 
     require('./select2/select2.min');
+
+    require('fluidbox/dist/js/jquery.fluidbox.min');
+
+    require('jquery-ui');
+    require('jquery.tocify');
+
+    require('./topic/topic');
+
 } catch (e) {}
 
 /**

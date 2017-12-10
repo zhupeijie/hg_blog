@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The Model RelationShip On Topic
+     * The model relation on Topic.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 是否为发布者
+     * Is author of the model.
      *
      * @param $model
      * @return bool

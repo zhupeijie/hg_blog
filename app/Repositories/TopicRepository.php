@@ -14,7 +14,17 @@ use Illuminate\Http\Request;
 
 class TopicRepository extends BaseRepository
 {
+    /**
+     * The user model instance.
+     * @var
+     */
     protected $user;
+
+    /**
+     * The topic model instance.
+     *
+     * @var Topic
+     */
     protected $topic;
 
     /**
@@ -25,9 +35,15 @@ class TopicRepository extends BaseRepository
     public function __construct(Topic $topic)
     {
         $this->topic = $topic;
-        $this->user = user();
     }
 
+    /**
+     * Get all topics.
+     *
+     * @param Request $request
+     * @param int $pageSize
+     * @return mixed
+     */
     public function getAllTopicsWithAuthor(Request $request, $pageSize = 20)
     {
         return $this->topic->withOrder($request->order)
@@ -36,31 +52,66 @@ class TopicRepository extends BaseRepository
             ->paginate($pageSize);
     }
 
+    /**
+     * Get topic by topic id.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getTopicById($id)
     {
         return $this->topic->findOrFail($id);
     }
 
+    /**
+     * Get topic with label by topic id.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getTopicWithLabelById($id)
     {
         return $this->topic->where('id', $id)->with('labels')->firstOrFail();
     }
 
+    /**
+     * Create a topic.
+     *
+     * @param array $attributes
+     * @return Topic
+     */
     public function create(array $attributes)
     {
-        $attributes['user_id'] = Auth::id();
-        $attributes['last_reply_user_id'] = Auth::id();
+        $this->topic->fill($attributes);
+        $this->topic->user_id = user()->id;
+        $this->topic->last_reply_user_id = 0;
 
-        return $this->topic->create($attributes);
+        $this->topic->save();
+
+        return $this->topic;
     }
 
+    /**
+     * Update topic.
+     *
+     * @param $topic
+     * @param array $attributes
+     * @return mixed
+     */
     public function update($topic, array $attributes)
     {
-        $attributes['last_reply_user_id'] = user()->id;
+        $topic->fill($attributes);
+        $topic->last_reply_user_id = 0;
 
         return $topic->update($attributes);
     }
 
+    /**
+     * Delete topic  update topic column is_delete.
+     *
+     * @param $topic
+     * @return mixed
+     */
     public function delete($topic)
     {
         $topic->is_delete = Topic::IS_DELETE;
@@ -68,6 +119,12 @@ class TopicRepository extends BaseRepository
         return $topic->save();
     }
 
+    /**
+     * 新建话题时 规范 label id.
+     *
+     * @param array $labels
+     * @return array
+     */
     public function normalizeLabelOnCreate(array $labels)
     {
         return collect($labels)->map(function ($label) {
@@ -81,6 +138,13 @@ class TopicRepository extends BaseRepository
         })->toArray();
     }
 
+    /**
+     * 更新话题时 规范 label id.
+     *
+     * @param array $labels
+     * @param $topic
+     * @return array
+     */
     public function normalizeLabelOnUpdate(array $labels, $topic)
     {
         $labels = collect($labels)->map(function ($label) {
@@ -110,6 +174,12 @@ class TopicRepository extends BaseRepository
         return $labels;
     }
 
+    /**
+     * Get label id By label name.
+     *
+     * @param $label
+     * @return mixed
+     */
     private function getLabelIdByName($label)
     {
         $oldLabel = Label::where('name', $label)->first();
@@ -122,11 +192,37 @@ class TopicRepository extends BaseRepository
         return $oldLabel->id;
     }
 
-    public function getTopicsWithCategories(Category $category, Request $request, $pageSize = 20)
+    /**
+     * Get topics by category.
+     *
+     * @param Category $category
+     * @param Request $request
+     * @param int $pageSize
+     * @return mixed
+     */
+    public function getTopicsByCategory(Category $category, Request $request, $pageSize = 20)
     {
         return $this->topic->withOrder($request->order)
                         ->with('user', 'category')
                         ->where('category_id', $category->id)
                         ->paginate($pageSize);
+    }
+
+    /**
+     * Topic relation models decrement column topics_count.
+     *
+     * @param $topic
+     * @return bool
+     */
+    public function decTopicRelations($topic)
+    {
+        $topic->user()->decrement('topics_count');
+
+        $topic->category()->decrement('topics_count');
+
+        $labelIds = $topic->labels()->pluck('label_id');
+        Label::where('id', $labelIds)->decrement('topics_count');
+
+        return true;
     }
 }

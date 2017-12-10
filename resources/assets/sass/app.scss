@@ -19,6 +19,12 @@
 
 //@import "topic_body";
 
+@import "topic_show";
+
+@import "~fluidbox/dist/css/fluidbox.min";
+
+@import "~jquery.tocify/src/stylesheets/jquery.tocify";
+
 // 引入html中markdown的样式
 @import "../css/markdown/markdown";
 

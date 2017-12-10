@@ -12880,6 +12880,402 @@ body {
   border-bottom: 1px dotted #7c7c7c;
 }
 
+.p-show-page {
+  /******/
+  /*******************************
+      Sticky
+   *******************************/
+  /*******************************
+              States
+  *******************************/
+  /* Bound */
+  /* Fixed */
+  /* Bound/Fixed Position */
+  /*******************************
+      toc
+  *******************************/
+}
+
+.p-show-page .ui.card {
+  margin: 1em 0.3em;
+  max-width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 290px;
+  min-height: 0px;
+  background: #FFFFFF;
+  padding: 0em;
+  border: none;
+  border-radius: 0.28571429rem;
+  -webkit-box-shadow: 0px 1px 3px 0px #d3e0e9, 0px 0px 0px 1px #d3e0e9;
+          box-shadow: 0px 1px 3px 0px #d3e0e9, 0px 0px 0px 1px #d3e0e9;
+  -webkit-transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  transition: box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  -webkit-transition: -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  transition: -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-box-shadow 0.1s ease, -webkit-transform 0.1s ease;
+  transition: box-shadow 0.1s ease, transform 0.1s ease, -webkit-transform 0.1s ease;
+}
+
+.p-show-page .tocify-extend-page {
+  display: none;
+}
+
+.p-show-page .ui.sticky {
+  position: static;
+  -webkit-transition: none;
+  transition: none;
+  z-index: 800;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+.p-show-page .ui.sticky.bound {
+  position: absolute;
+  left: auto;
+  right: auto;
+}
+
+.p-show-page .ui.sticky.fixed {
+  position: fixed;
+  left: auto;
+  right: auto;
+}
+
+.p-show-page .ui.sticky.bound.top,
+.p-show-page .ui.sticky.fixed.top {
+  top: 0px;
+  bottom: auto;
+}
+
+.p-show-page .ui.sticky.bound.bottom,
+.p-show-page .ui.sticky.fixed.bottom {
+  top: auto;
+  bottom: 0px;
+}
+
+.p-show-page #toc {
+  padding: 22px 4px;
+}
+
+.p-show-page #toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.p-show-page #toc li {
+  line-height: 28px;
+}
+
+.p-show-page #toc a {
+  text-decoration: none;
+  display: block;
+}
+
+.p-show-page #toc .toc-h2 {
+  padding-left: 10px;
+}
+
+.p-show-page #toc .toc-h3 {
+  padding-left: 20px;
+}
+
+.p-show-page #toc .toc-active {
+  background: #ccc;
+}
+
+.p-show-page #toc .tocify ul,
+.p-show-page #toc .tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 30px;
+}
+
+.p-show-page #toc .tocify-header {
+  text-indent: 0px;
+  padding: 0px 8px;
+}
+
+.p-show-page #toc .tocify-subheader {
+  text-indent: 10px;
+  display: none;
+}
+
+.p-show-page #toc .tocify-subheader li {
+  font-size: 13px;
+}
+
+.p-show-page #toc .tocify-subheader .tocify-subheader {
+  text-indent: 30px;
+}
+
+.p-show-page #toc .tocify-subheader .tocify-subheader .tocify-subheader {
+  text-indent: 40px;
+}
+
+.p-show-page #toc .nav-list > li > a,
+.p-show-page #toc .nav-list .nav-header {
+  margin: 0px;
+}
+
+.p-show-page #toc .nav-list > li > a {
+  padding: 5px;
+  color: inherit;
+}
+
+.p-show-page #toc li.tocify-item:hover {
+  background: rgba(241, 244, 247, 0.78);
+}
+
+.p-show-page #toc li.tocify-item.active {
+  border-bottom: 1px solid #00b5ad;
+  margin-bottom: -1px;
+}
+
+.p-show-page #toc {
+  /*
+     * jquery.tocify.css 1.9.0
+     * Author: @gregfranko
+     */
+  /* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+  /* Top level header elements */
+  /* Top level subheader elements.  These are the first nested items underneath a header element. */
+  /* Makes the font smaller for all subheader elements. */
+  /* Further indents second level subheader elements. */
+  /* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
+  /* Twitter Bootstrap Override Style */
+  /* Twitter Bootstrap Override Style */
+}
+
+@-webkit-keyframes a {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotateX(0) rotateY(0);
+    transform: translate(-50%, -50%) rotateX(0) rotateY(0);
+  }
+
+  50% {
+    -webkit-transform: translate(-50%, -50%) rotateX(-180deg) rotateY(0);
+    transform: translate(-50%, -50%) rotateX(-180deg) rotateY(0);
+  }
+
+  to {
+    -webkit-transform: translate(-50%, -50%) rotateX(-180deg) rotateY(-180deg);
+    transform: translate(-50%, -50%) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+@keyframes a {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotateX(0) rotateY(0);
+    transform: translate(-50%, -50%) rotateX(0) rotateY(0);
+  }
+
+  50% {
+    -webkit-transform: translate(-50%, -50%) rotateX(-180deg) rotateY(0);
+    transform: translate(-50%, -50%) rotateX(-180deg) rotateY(0);
+  }
+
+  to {
+    -webkit-transform: translate(-50%, -50%) rotateX(-180deg) rotateY(-180deg);
+    transform: translate(-50%, -50%) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+.fluidbox {
+  outline: none;
+}
+
+.fluidbox__overlay {
+  background-color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: -100%;
+  left: 0;
+  bottom: -100%;
+  right: 0;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.fluidbox--opened .fluidbox__overlay {
+  pointer-events: auto;
+}
+
+.fluidbox__wrap {
+  background-position: center center;
+  background-size: cover;
+  margin: 0 auto;
+  position: relative;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.fluidbox--closed .fluidbox__thumb,
+.fluidbox__thumb {
+  -webkit-transition: opacity 0s ease-in-out 0s;
+  transition: opacity 0s ease-in-out 0s;
+}
+
+.fluidbox__ghost {
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  -webkit-transition: opacity 0s 0s,-webkit-transform .5s 0s;
+  transition: opacity 0s 0s,-webkit-transform .5s 0s;
+  transition: opacity 0s 0s,transform .5s 0s;
+  transition: opacity 0s 0s,transform .5s 0s,-webkit-transform .5s 0s;
+}
+
+.fluidbox--opened .fluidbox__ghost {
+  cursor: pointer;
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out;
+}
+
+.fluidbox--closed .fluidbox__ghost {
+  -webkit-transition: opacity 0s .5s,-webkit-transform .5s 0s;
+  transition: opacity 0s .5s,-webkit-transform .5s 0s;
+  transition: opacity 0s .5s,transform .5s 0s;
+  transition: opacity 0s .5s,transform .5s 0s,-webkit-transform .5s 0s;
+}
+
+.fluidbox__loader {
+  opacity: 0;
+  -webkit-perspective: 200px;
+  perspective: 200px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.fluidbox__loader:before {
+  background-color: rgba(255, 255, 255, 0.85);
+  content: '';
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20%;
+  padding-bottom: 20%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  transition-property: transform,-webkit-transform;
+  -webkit-transition-duration: .5s;
+  transition-duration: .5s;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.fluidbox--loading .fluidbox__loader {
+  opacity: 1;
+  -webkit-transition: opacity .5s ease-in-out .5s;
+  transition: opacity .5s ease-in-out .5s;
+}
+
+.fluidbox--loading .fluidbox__loader:before {
+  -webkit-animation: a 1s 0s infinite ease-in-out forwards;
+  animation: a 1s 0s infinite ease-in-out forwards;
+}
+
+
+
+/*
+ * jquery.tocify.css 1.9.0
+ * Author: @gregfranko
+ */
+
+/* The Table of Contents container element */
+
+.tocify {
+  width: 20%;
+  max-height: 90%;
+  overflow: auto;
+  margin-left: 2%;
+  position: fixed;
+  border: 1px solid #ccc;
+  webkit-border-radius: 6px;
+  moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* The Table of Contents is composed of multiple nested unordered lists.  These styles remove the default styling of an unordered list because it is ugly. */
+
+.tocify ul,
+.tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 30px;
+}
+
+/* Top level header elements */
+
+.tocify-header {
+  text-indent: 10px;
+}
+
+/* Top level subheader elements.  These are the first nested items underneath a header element. */
+
+.tocify-subheader {
+  text-indent: 20px;
+  display: none;
+}
+
+/* Makes the font smaller for all subheader elements. */
+
+.tocify-subheader li {
+  font-size: 12px;
+}
+
+/* Further indents second level subheader elements. */
+
+.tocify-subheader .tocify-subheader {
+  text-indent: 30px;
+}
+
+/* Further indents third level subheader elements. You can continue this pattern if you have more nested elements. */
+
+.tocify-subheader .tocify-subheader .tocify-subheader {
+  text-indent: 40px;
+}
+
+/* Twitter Bootstrap Override Style */
+
+.nav-list > li > a,
+.nav-list .nav-header {
+  margin: 0px;
+}
+
+/* Twitter Bootstrap Override Style */
+
+.nav-list > li > a {
+  padding: 5px;
+}
+
 @font-face {
   font-family: octicons-link;
   src: url(data:font/woff;charset=utf-8;base64,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) format("woff");

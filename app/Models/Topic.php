@@ -10,11 +10,11 @@ class Topic extends Model
     const NOT_DELETE = 0;
 
     protected $fillable = [
-        'title', 'body', 'category_id', 'excerpt', 'slug', 'user_id', 'last_reply_user_id'
+        'title', 'body', 'category_id', 'excerpt', 'slug'
     ];
 
     /**
-     * The Model RelationShip On User
+     * The model relation on User.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -24,7 +24,7 @@ class Topic extends Model
     }
 
     /**
-     * The Model RelationShip On Category
+     * The model relation on Category.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,11 +33,23 @@ class Topic extends Model
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * The model relation on Label.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function labels()
     {
         return $this->belongsToMany(Label::class, 'topic_label')->withTimestamps();
     }
 
+    /**
+     * The topics lists order method.
+     *
+     * @param $query
+     * @param $order
+     * @return mixed
+     */
     public function scopeWithOrder($query, $order)
     {
         switch ($order) {

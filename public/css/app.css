@@ -12841,6 +12841,12 @@ body {
 
 /* Topic Index Page */
 
+.p-index-page .topic-list,
+.categories-show-page .topic-list,
+.root-page .topic-list {
+  /* topics-lists */
+}
+
 .p-index-page .topic-list .nav > li > a,
 .categories-show-page .topic-list .nav > li > a,
 .root-page .topic-list .nav > li > a {
@@ -12882,6 +12888,54 @@ body {
   margin-bottom: 12px;
   border: 0;
   border-top: 1px solid #dcebf5;
+}
+
+.p-index-page .topic-list .list-group .list-group-item,
+.categories-show-page .topic-list .list-group .list-group-item,
+.root-page .topic-list .list-group .list-group-item {
+  margin: 20px 0px;
+  padding: 15px;
+  border: none !important;
+  border-radius: 4px;
+}
+
+.p-index-page .topic-list .list-group .list-group-item:hover,
+.categories-show-page .topic-list .list-group .list-group-item:hover,
+.root-page .topic-list .list-group .list-group-item:hover {
+  -webkit-animation: topic-float-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 1;
+  animation: topic-float-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 1;
+}
+
+@-webkit-keyframes topic-float-shadow {
+  0% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    -webkit-box-shadow: 0 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  100% {
+    -webkit-transform: translateZ(50px) translateY(-10px);
+    transform: translateZ(50px) translateY(-10px);
+    -webkit-box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
+    box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@keyframes topic-float-shadow {
+  0% {
+    -webkit-transform: translateZ(0) translateY(0);
+    transform: translateZ(0) translateY(0);
+    -webkit-box-shadow: 0 0 0 0 transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  100% {
+    -webkit-transform: translateZ(50px) translateY(-10px);
+    transform: translateZ(50px) translateY(-10px);
+    -webkit-box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
+    box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
+  }
 }
 
 /* Topic Show Page */

@@ -4,7 +4,7 @@
 
 @section('style')
     <link href="{{ asset('css/topic.css') }}" rel="stylesheet">
-@endsection
+@stop
 
 @section('content')
 
@@ -35,8 +35,7 @@
                     </div>
                 @endif
 
-                <div class="panel panel-default">
-
+                <div class="topic-lists">
                     <div class="panel-heading">
                         <ul class="nav nav-pills">
                             <li class="{{ active_class(( ! if_query('order', 'recent') )) }}"><a href="{{ Request::url() }}?order=default">最后回复</a></li>
@@ -51,6 +50,7 @@
                         {!! $topics->render() !!}
                     </div>
                 </div>
+
             </div>
 
             <div class="col-lg-3 col-md-3 sidebar">
@@ -59,4 +59,4 @@
         </div>
     </div>
 
-@endsection
+@stop

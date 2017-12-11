@@ -1,11 +1,11 @@
 @if (count($topics))
 
-    <ul class="media-list">
+    <ul class="list-group">
         @foreach ($topics as $topic)
-            <li class="media">
+            <li class="media list-group-item">
                 <div class="media-left">
                     <a href="{{ route('users.show', [$topic->user_id]) }}">
-                        <img class="media-object img-circle" style="width: 52px; height: 52px;" src="{{ $topic->user->avatar }}" title="{{ $topic->user->name }}">
+                        <img class="media-object img-circle" style="width: 64px; height: 64px;" src="{{ $topic->user->avatar }}" title="{{ $topic->user->name }}">
                     </a>
                 </div>
 
@@ -21,7 +21,6 @@
                     </div>
 
                     <div class="media-body meta">
-
                         <a href="{{ route('categories.show', $topic->category->id) }}" title="{{ $topic->category->name }}">
                             <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                              {{ $topic->category->name }}
@@ -39,10 +38,6 @@
 
                 </div>
             </li>
-
-            @if ( ! $loop->last)
-                <hr>
-            @endif
 
         @endforeach
     </ul>

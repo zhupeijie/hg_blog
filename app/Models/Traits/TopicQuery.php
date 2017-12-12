@@ -19,11 +19,11 @@ trait TopicQuery
     public function scopeWithOrder($query, $order)
     {
         switch ($order) {
-            case 'recent' :
-                $query = $this->recent();
+            case 'heat' :
+                $query = $this->heat();
                 break;
             default :
-                $query = $this->recentReplied();
+                $query = $this->recent();
                 break;
         }
 
@@ -53,6 +53,17 @@ trait TopicQuery
     {
         // 按照创建时间排序
         return $query->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * 以热度倒叙排序 查看数目
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeHeat($query)
+    {
+        return $query->orderBy('view_count', 'desc');
     }
 
     /**

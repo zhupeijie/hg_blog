@@ -65,7 +65,7 @@ trait ActiveUserHelper
     private function calculateActiveUsers()
     {
         $this->calculateTopicScore();
-        $this->calculateReplyScore();
+//        $this->calculateReplyScore();
 
         // 数组按照得分排序
         $users = array_sort($this->users, function ($user) {
@@ -81,7 +81,7 @@ trait ActiveUserHelper
         // 新建一个空集合
         $active_users = collect();
 
-        foreach ($users as $user_id => $user) {
+        foreach ($users as $user_id => $score) {
             // 找寻下是否可以找到用户
             $user = $this->find($user_id);
 

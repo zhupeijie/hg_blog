@@ -193,8 +193,8 @@ body {
             box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
         }
         100% {
-            -webkit-transform: translateZ(50px) translateY(-10px);
-            transform: translateZ(50px) translateY(-10px);
+            -webkit-transform: translateZ(50px) translateY(-6px);
+            transform: translateZ(50px) translateY(-6px);
             -webkit-box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
             box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
         }
@@ -207,8 +207,8 @@ body {
             box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
         }
         100% {
-            -webkit-transform: translateZ(50px) translateY(-10px);
-            transform: translateZ(50px) translateY(-10px);
+            -webkit-transform: translateZ(50px) translateY(-6px);
+            transform: translateZ(50px) translateY(-6px);
             -webkit-box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
             box-shadow: 6px 6px 16px -2px rgba(0, 0, 0, 0.35);
         }
@@ -232,6 +232,26 @@ body {
 
         .topic-create-time {
             border-bottom: 1px dotted #7c7c7c;
+        }
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    .panel-body {
+        padding: 12px;
+    }
+
+    hr {
+        margin-top: 8px;
+        margin-bottom: 10px;
+    }
+
+    .active-users {
+        a.media {
+            color: #797878;
+            line-height: 26px;
+            font-size: 0.9em;
         }
     }
 }

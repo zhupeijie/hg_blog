@@ -55,8 +55,8 @@ class SocialiteController extends Controller
         }
 
         Auth::login($user);
-        $time = time();
 
+        $time = time();
         $singleToken = md5(request()->getClientIp() . user()->id . $time);
         // 当前 time 存入 Redis
         \Redis::set('blog:single_user_login_' . user()->id, $time);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Models\Category;
 use App\Models\Topic;
+use App\Models\User;
 use Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
@@ -30,11 +31,12 @@ class TopicsController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         $topics = $this->topic->getAllTopicsWithAuthor($request);
+        $activeUsers = $user->getActiveUsers();
 
-        return view('home.topics.index', compact('topics'));
+        return view('home.topics.index', compact('topics', 'activeUsers'));
     }
 
     /**

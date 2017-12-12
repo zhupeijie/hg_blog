@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class CalculateActiveUser extends Command
@@ -30,10 +31,11 @@ class CalculateActiveUser extends Command
         parent::__construct();
     }
 
+
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @param User $user
      */
     public function handle(User $user)
     {

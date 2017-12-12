@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\Label;
+use App\Models\User;
 use App\Repositories\LabelRepository;
 use App\Repositories\TopicRepository;
 use Request;
@@ -23,10 +24,11 @@ class LabelsController extends Controller
         $this->topic = $topic;
     }
 
-    public function show(Label $label, Request $request)
+    public function show(Label $label, Request $request, User $user)
     {
         $topics = $this->label->getTopicsByLabel($label, $request);
+        $activeUsers = $user->getActiveUsers();
 
-        return view('home.topics.index', compact('topics', 'label'));
+        return view('home.topics.index', compact('topics', 'label', 'activeUsers'));
     }
 }

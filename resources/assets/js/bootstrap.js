@@ -23,6 +23,8 @@ try {
 
     require('./topic/topic');
 
+    window.swal = require('sweetalert2');
+
 } catch (e) {}
 
 /**

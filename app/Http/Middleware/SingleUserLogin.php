@@ -10,16 +10,17 @@ class SingleUserLogin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         // 读取用户的单用户登录 cookie
         $singleToken = request()->cookie('SINGLE_USER_LOGIN');
-        if (!$singleToken) {
+        if ( !$singleToken) {
             auth()->logout();
+
             return redirect('/login');
         }
 
@@ -35,12 +36,14 @@ class SingleUserLogin
 //                \DB::table('data_login_exception')->insert(['user_id' => auth()->id, 'ip' => request()->getClientIp(), 'created_at' => time()]);
 
                 flashy()->error('您的帐号已在另一个地点登录...');
+
                 return view('/login');
             }
 
             return $next($request);
         } else {
             auth()->logout();
+
             return redirect('login');
         }
     }

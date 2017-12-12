@@ -35,7 +35,7 @@
                                         <form action="{{ route('p.destroy', [hashIdEncode($topic->id)]) }}" method="post" class="delete-form">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-default btn-xs" style="margin-left: 6px">
+                                            <button type="button" class="btn btn-default btn-xs btn-del-topic" style="margin-left: 6px">
                                                 <i class="icon iconfont icon-shanchu"></i>
                                             </button>
                                         </form>

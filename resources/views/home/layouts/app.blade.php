@@ -36,7 +36,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     @include('flashy::message')
+
     @yield('javascript')
 </body>
 </html>

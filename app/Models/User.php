@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\ActiveUserHelper;
 use App\Traits\LastActivedAtHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, LastActivedAtHelper;
+    use Notifiable, ActiveUserHelper, LastActivedAtHelper;
 
     /**
      * 是否是已激活状态

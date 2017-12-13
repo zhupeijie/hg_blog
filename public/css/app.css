@@ -12843,13 +12843,15 @@ body {
 
 .p-index-page .topic-list,
 .categories-show-page .topic-list,
-.root-page .topic-list {
+.root-page .topic-list,
+.labels-show-page .topic-list {
   /* topics-lists */
 }
 
 .p-index-page .topic-list .nav > li > a,
 .categories-show-page .topic-list .nav > li > a,
-.root-page .topic-list .nav > li > a {
+.root-page .topic-list .nav > li > a,
+.labels-show-page .topic-list .nav > li > a {
   position: relative;
   display: block;
   padding: 5px 14px;
@@ -12858,32 +12860,37 @@ body {
 
 .p-index-page .topic-list a,
 .categories-show-page .topic-list a,
-.root-page .topic-list a {
+.root-page .topic-list a,
+.labels-show-page .topic-list a {
   color: #444444;
 }
 
 .p-index-page .topic-list .meta,
 .categories-show-page .topic-list .meta,
-.root-page .topic-list .meta {
+.root-page .topic-list .meta,
+.labels-show-page .topic-list .meta {
   font-size: 0.9em;
   color: #b3b3b3;
 }
 
 .p-index-page .topic-list .meta a,
 .categories-show-page .topic-list .meta a,
-.root-page .topic-list .meta a {
+.root-page .topic-list .meta a,
+.labels-show-page .topic-list .meta a {
   color: #b3b3b3;
 }
 
 .p-index-page .topic-list .badge,
 .categories-show-page .topic-list .badge,
-.root-page .topic-list .badge {
+.root-page .topic-list .badge,
+.labels-show-page .topic-list .badge {
   background-color: #d8d8d8;
 }
 
 .p-index-page .topic-list hr,
 .categories-show-page .topic-list hr,
-.root-page .topic-list hr {
+.root-page .topic-list hr,
+.labels-show-page .topic-list hr {
   margin-top: 12px;
   margin-bottom: 12px;
   border: 0;
@@ -12892,7 +12899,8 @@ body {
 
 .p-index-page .topic-list .list-group .list-group-item,
 .categories-show-page .topic-list .list-group .list-group-item,
-.root-page .topic-list .list-group .list-group-item {
+.root-page .topic-list .list-group .list-group-item,
+.labels-show-page .topic-list .list-group .list-group-item {
   margin: 20px 0px;
   padding: 15px;
   border: none !important;
@@ -12901,7 +12909,8 @@ body {
 
 .p-index-page .topic-list .list-group .list-group-item:hover,
 .categories-show-page .topic-list .list-group .list-group-item:hover,
-.root-page .topic-list .list-group .list-group-item:hover {
+.root-page .topic-list .list-group .list-group-item:hover,
+.labels-show-page .topic-list .list-group .list-group-item:hover {
   -webkit-animation: topic-float-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 1;
   animation: topic-float-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both 1;
 }

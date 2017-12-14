@@ -1,5 +1,7 @@
 @extends('home.layouts.app')
 
+@section('title', $topic->title)
+
 @section('style')
     <link href="{{ asset('css/topic.css') }}" rel="stylesheet">
     <link href="{{ asset('css/highlight/styles/default.css') }}" rel="stylesheet">

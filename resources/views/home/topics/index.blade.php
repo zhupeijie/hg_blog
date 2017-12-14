@@ -1,6 +1,6 @@
 @extends('home.layouts.app')
 
-@section('title', isset($category) ? $category->name : '话题列表')
+@section('title', isset($category) ? $category->name : (isset($label) ? $label->name : '话题列表'))
 
 @section('style')
     <link href="{{ asset('css/topic.css') }}" rel="stylesheet">

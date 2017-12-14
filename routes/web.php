@@ -40,3 +40,10 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('/oauth/github', 'SocialiteController@github')->name('oauth.github');
     Route::get('/oauth/github/callback', 'SocialiteController@githubCallBack')->name('oauth.github.callback');
 });
+
+/** 后台管理 */
+Route::group(['namespace' => 'Admin'], function () {
+    Route::any('admin', function () {
+        return view('admin.layouts.app');
+    });
+});

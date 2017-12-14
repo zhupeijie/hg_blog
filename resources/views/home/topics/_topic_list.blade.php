@@ -2,7 +2,6 @@
 
     <ul class="list-group">
         @foreach ($topics as $topic)
-            <a href="{{ route('p.show', [hashIdEncode($topic->id)]) }}" title="{{ $topic->title }}">
             <li class="media list-group-item">
                 <div class="media-left">
                     <a href="{{ route('users.show', [$topic->user_id]) }}">

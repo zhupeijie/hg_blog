@@ -9,6 +9,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueRouter from 'vue-router';
+import router from './routes'
+
+Vue.use(VueRouter)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -20,5 +25,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('backtop-roll', require('./components/backTop.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });

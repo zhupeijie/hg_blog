@@ -8,6 +8,6 @@ return [
     'github' => [
         'client_id'     => env('OAUTH_GITHUB_CLIENT_ID', ''),
         'client_secret' => env('OAUTH_GITHUB_CLIENT_SECRET', ''),
-        'redirect'      => env('OAUTH_GITHUB_REDIRECT_URI', 'http://blog.dev/oauth/github/callback'),
+        'redirect'      => env('OAUTH_GITHUB_REDIRECT_URI', ''),
     ],
 ];

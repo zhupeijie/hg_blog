@@ -34,8 +34,10 @@ class LabelRepository extends BaseRepository
     public function getTopicsByLabel($label, $request, $pageSize = 20)
     {
         return $this->topic
-            ->with('user', 'labels')
-            ->where('category_id', $label->id)
+            ->with('user')
+            ->whereHas('labels', function($query) use ($label) {
+                $query->where('label_id', $label->id);
+            })
             ->paginate($pageSize);
     }
 }

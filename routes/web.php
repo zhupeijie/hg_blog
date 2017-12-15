@@ -42,8 +42,8 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 /** 后台管理 */
-Route::group(['namespace' => 'Admin'], function () {
-    Route::any('admin', function () {
-        return view('admin.layouts.app');
+Route::group(['namespace' => 'Manage'], function () {
+    Route::any('manage', function () {
+        return view('manage.layouts.app');
     });
 });

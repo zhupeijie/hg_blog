@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api', 'middleware' => 'api'], function () {
     // select2 获得标签
     Route::get('/labels', 'LabelsController@index')->name('api.get_label_like');
+
+    Route::resource('/topics', 'TopicsController');
 });

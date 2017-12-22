@@ -42,16 +42,19 @@ class TopicRepository extends BaseRepository
      *
      * @param Request $request
      * @param int $pageSize
+     * @param bool $showAll
      * @return mixed
      */
-    public function getAllTopicsWithAuthor(Request $request, $pageSize = 20)
+    public function getAllTopicsWithAuthor(Request $request, $pageSize = 20, $showAll = false)
     {
         $title = ($request->has('q') && $request->get('q')) ? $request->get('q') : '';
 
-        return $this->topic->withOrder($request->order)
-            ->byTitle($title)
-            ->undeleted()->published()
-            ->with('user', 'category')
+        $resource = $this->topic->withOrder($request->order)
+            ->byTitle($title);
+
+        if ( !$showAll) $resource->undeleted()->published();
+
+        return $resource->with('user', 'category')
             ->paginate($pageSize);
     }
 

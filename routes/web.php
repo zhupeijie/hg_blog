@@ -41,9 +41,18 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('/oauth/github/callback', 'SocialiteController@githubCallBack')->name('oauth.github.callback');
 });
 
-/** 后台管理 */
+/** spa */
 Route::group(['namespace' => 'Manage'], function () {
     Route::any('manage', function () {
         return view('manage.layouts.app');
+    });
+});
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'IndexController@index')->name('admin.index');
+    Route::get('/dashboard','DashboardController@index')->name('admin.dashboard');
+    Route::resource('topics', 'TopicsController', ['as'=>'admin']);
+    Route::get('/timeline', function () {
+        return view('admin.timeline.index');
     });
 });
